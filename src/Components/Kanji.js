@@ -4,7 +4,8 @@ import '../App.css';
 
 function Kanji() {
 
-    const [data, setData] = useState({ kanji: [] });
+    const [data, setData] = useState({ });
+    const [isBusy, setBusy] = useState(true); 
 
     useEffect(async () => {
         /*const result = await axios(
@@ -12,80 +13,76 @@ function Kanji() {
         ); */
 
         setData({
-            "kanji": "丸",
-            "grade": 2,
-            "stroke_count": 3,
+            "kanji": "蛍",
+            "grade": 8,
+            "stroke_count": 11,
             "meanings": [
-                "round",
-                "full (month)",
-                "perfection",
-                "-ship",
-                "pills",
-                "make round",
-                "roll up",
-                "curl up",
-                "seduce",
-                "explain away"
+                "lightning-bug",
+                "firefly"
             ],
             "kun_readings": [
-                "まる",
-                "まる.める",
-                "まる.い"
+                "ほたる"
             ],
             "on_readings": [
-                "ガン"
+                "ケイ"
             ],
-            "name_readings": [
-                "ま",
-                "わ",
-                "わに"
-            ],
-            "jlpt": 2,
-            "unicode": "4e38",
-            "heisig_en": "round"
+            "name_readings": [],
+            "jlpt": 1,
+            "unicode": "86cd",
+            "heisig_en": "lightning-bug"
         });
+
+        setBusy(false); 
     }, []);
 
-    return (
-        <div>
-
+    if(isBusy){
+        return (<div>Loading...</div>); 
+    }
+    else{
+        return (
             <div>
-                <h2>Definitions</h2>
+                <div>
+                    <h2>Definitions</h2>
+
+                    <div className="readings">
+                        <ul>
+                            {data.meanings.map((item) =>
+                                <li className="meanings-list">{item}</li>
+                            )}
+                        </ul>
+                    </div>
+                </div>
+                <div className="KanjiData">
+                    {data.kanji}
+                </div>
 
                 <div className="readings">
-                    <ul>
-                        {data.meanings.map((item) =>
-                            <li className="meanings-list">{item}</li>
-                        )}
-                    </ul>
+                    <div>
+                        <h2>Kunyomi Readings:</h2>
+
+                        <ul>
+                            {
+                                data.kun_readings.map((item) =>
+                                    <li className="kun-readings">{item}</li>
+                                )
+                            }
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2>On-yomi Readings: </h2>
+                        <ul>
+                            {
+                                data.on_readings.map((item) =>
+                                    <li>{item}</li>
+                                )
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div className="KanjiData">
-                {data.kanji}
-            </div>
-
-            <div className="readings">
-                <div>
-                    <h2>Kunyomi Readings:</h2>
-
-                    <ul>
-                        {data.kun_readings.map((item) =>
-                            <li className="kun-readings">{item}</li>
-                        )}
-                    </ul>
-                </div>
-
-                <div>
-                    <h2>On-yomi Readings: </h2>
-                    <ul>
-                        {data.on_readings.map((item) =>
-                            <li>{item}</li>
-                        )}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default Kanji;
