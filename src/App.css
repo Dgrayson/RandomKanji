@@ -60,10 +60,10 @@ ul{
 }
 
 
-ul .meanings-list{
-  justify-content: space-between;
-  flex-basis: 20%;
-  font-size: 1.2em;
+.meanings-list{
+  justify-content: space-around;
+  font-size: 1.5em;
+  padding: 1em;
 }
 
 ul .kun-readings{
