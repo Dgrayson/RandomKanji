@@ -53,20 +53,28 @@
   justify-content: space-around;
 }
 
-ul{
-  list-style: none;
-  display: flex;
-  flex-flow: row wrap;
-}
-
-
 .meanings-list{
   justify-content: space-around;
   font-size: 1.5em;
   padding: 1em;
 }
 
-ul .kun-readings{
-  justify-content: space-between;
-  font-size: 1.2em;
+.kun-readings{
+  font-size: 2em;
+  list-style: none;
+}
+
+.on-readings{
+  font-size: 2em;
+  list-style: none;
+}
+
+.randomButton{
+  background-color: rgb(85, 179, 22);
+  border: none;
+  color: white; 
+  padding: 20px; 
+  text-align: center; 
+  text-decoration: none;
+
 }
