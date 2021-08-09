@@ -35,7 +35,9 @@ function Kanji() {
             case "Grade 5":
                 setMode("Grade 5");
                 break;
-
+            default: 
+                setMode("All"); 
+                break; 
         }
     }
 
@@ -64,7 +66,9 @@ function Kanji() {
             case "Grade 5":
                 response = await Promise.all([axios.get("http://kanjiapi.dev/v1/kanji/grade-5")]);
                 break;
-
+            default: 
+                response = [{}]; 
+                break; 
         }
 
         let num = Math.floor(Math.random() * Math.floor(response[0].data.length));
@@ -79,7 +83,7 @@ function Kanji() {
     }
 
     if(isBusy){
-        return (<div>Loading...</div>); 
+        return (<div className="loading">Loading...</div>); 
     }
     else{
         return (
