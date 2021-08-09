@@ -83,12 +83,15 @@ function Kanji() {
     }
 
     if(isBusy){
-        return (<div className="loading">Loading...</div>); 
+        return (<div id="container"><div className="loading">Loading...</div></div>); 
     }
     else{
         return (
-            <div>
-                <div>
+            <div id="container">
+                <div className="KanjiData">
+                    {data.kanji}
+                </div>
+                <div id="definitions">
                     <h2>Definitions</h2>
 
                     <div className="readings">
@@ -97,15 +100,13 @@ function Kanji() {
                         )}
                     </div>
                 </div>
-                <div className="KanjiData">
-                    {data.kanji}
-                </div>
 
-                <div className="readings">
-                    <div>
+
+
+                    <div id="kun-readings">
                         <h2>Kunyomi Readings:</h2>
 
-                        <ul class="kun-readings">
+                        <ul class="kun-readings-list">
                             {
                                 data.kun_readings != null || data.kun_readings == []
                                     ? data.kun_readings.map((item) => <li className="kun-readings">{item}</li>) 
@@ -114,9 +115,9 @@ function Kanji() {
                         </ul>
                     </div>
 
-                    <div>
+                    <div id="on-readings">
                         <h2>On-yomi Readings: </h2>
-                        <ul class="on-readings">
+                        <ul class="on-readings-list">
                             {
                                 data.on_readings != null || data.on_readings == []
                                     ? data.on_readings.map((item) =><li>{item}</li>)
@@ -124,17 +125,18 @@ function Kanji() {
                             }
                         </ul>
                     </div>
-                </div>
 
-                <select id="filter" onChange={changeMode}>
-                    <option>All</option>
-                    <option>Grade 1</option>
-                    <option>Grade 2</option>
-                    <option>Grade 3</option>
-                    <option>Grade 4</option>
-                    <option>Grade 5</option>
-                </select>
-                <button className="randomButton" onClick={getKanji}>Give me another</button>
+                <div id="nav-button">
+                    <select id="filter" onChange={changeMode}>
+                        <option>All</option>
+                        <option>Grade 1</option>
+                        <option>Grade 2</option>
+                        <option>Grade 3</option>
+                        <option>Grade 4</option>
+                        <option>Grade 5</option>
+                    </select>
+                    <button className="randomButton" onClick={getKanji}>Give me another</button>
+                </div>
             </div>
         );
     }
