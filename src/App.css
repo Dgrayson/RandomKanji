@@ -78,6 +78,11 @@
   list-style: none;
 }
 
+.kun-entry{
+  text-align: center;
+  margin: auto;
+}
+
 #on-readings{
   grid-row-start: 2;
   grid-row-end: 4;
