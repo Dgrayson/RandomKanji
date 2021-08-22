@@ -13,17 +13,21 @@ function Navigation(){
     }
     
     return(
+
         <div id="nav-button">
-        <select id="filter" onChange={changeMode}>
-            <option value="all">All</option>
-            <option value="grade-1">Grade 1</option>
-            <option value="grade-2">Grade 2</option>
-            <option value="grade-3">Grade 3</option>
-            <option value="grade-4">Grade 4</option>
-            <option value="grade-5">Grade 5</option>
-        </select>
-        <button className="randomButton" /*onClick={getKanji}*/>Give me another</button>
-    </div>
+            <select id="filter" onChange={changeMode}>
+                <option value="all">All</option>
+                <option value="grade-1">Grade 1</option>
+                <option value="grade-2">Grade 2</option>
+                <option value="grade-3">Grade 3</option>
+                <option value="grade-4">Grade 4</option>
+                <option value="grade-5">Grade 5</option>
+                <option value="grade-6">Grade 6</option>
+                <option value="grade-7">Grade 7</option>
+                <option value="grade-8">Grade 8</option>
+            </select>
+            <button className="randomButton" onClick={this.props.GetKanji(mode)}>Give me another</button>
+        </div>
     );
 }
 

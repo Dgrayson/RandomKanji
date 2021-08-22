@@ -1,71 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../App.css'; 
-
-const Readings = ({data}) =>{
-
-    return (
-        <div class="readings">
-            <div id="kun-readings">
-                <KunyomiReading  data={data} />
-            </div>
-            
-            <div id="on-readings">
-                <OnyomiReading data={data} />
-            </div>
-        </div>
-    )
-}
-
-const KunyomiReading = ({data}) =>{
-    return (
-        <div id="kun-readings">
-            <h2>Kunyomi Readings:</h2>
-
-            <ul class="kun-readings-list">
-                {
-                    data.kun_readings != null || data.kun_readings == []
-                        ? data.kun_readings.map((item) => <li className="kun-entry">{item}</li>) 
-                        : <li>No data found</li>
-                }
-            </ul>
-        </div>
-    )
-}
-
-const OnyomiReading = ({data}) =>{
-    return (
-        <div >
-            <h2>On-yomi Readings: </h2>
-            <ul class="on-readings-list">
-                {
-                    data.on_readings != null || data.on_readings == []
-                        ? data.on_readings.map((item) =><li>{item}</li>)
-                        : <li>No data found</li>
-                }
-            </ul>
-        </div>
-    )
-}
+import Readings from './Readings.js'; 
+import Navigation from './Navigation.js';
 
 function Kanji() {
 
     let allKanji = []
     const [data, setData] = useState({ });
     const [isBusy, setBusy] = useState(true); 
-    const [mode, setMode] = useState("all"); 
     const baseUrl = "http://kanjiapi.dev/v1/kanji/"
 
     useEffect(async () => {
-        getKanji(); 
+        GetKanji("all"); 
     }, []);
 
-    function changeMode(e){
-        const mode = e.target.value; 
-        console.log(mode); 
-    }
-
-    async function getKanji(e){
+    async function GetKanji(mode){
 
         setBusy(true); 
 
@@ -85,10 +35,10 @@ function Kanji() {
     }
 
     if(isBusy){
-        console.log(mode);
         return (<div id="container"><div className="loading">Loading...</div></div>); 
     }
     else{
+        this.GetKanji = this.GetKanji.bind(this);
         return (
             <div id="container">
                 <div className="KanjiData">
@@ -105,20 +55,7 @@ function Kanji() {
                 </div>
 
                 <Readings data={data}/>         
-
-
-
-                <div id="nav-button">
-                    <select id="filter" onChange={changeMode}>
-                        <option value="all">All</option>
-                        <option value="grade-1">Grade 1</option>
-                        <option value="grade-2">Grade 2</option>
-                        <option value="grade-3">Grade 3</option>
-                        <option value="grade-4">Grade 4</option>
-                        <option value="grade-5">Grade 5</option>
-                    </select>
-                    <button className="randomButton" onClick={getKanji}>Give me another</button>
-                </div>
+                <Navigation GetKanji = {this.GetKanji} />
             </div>
         );
     }
