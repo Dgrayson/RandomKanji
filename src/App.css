@@ -105,6 +105,11 @@
   height: 40;
 }
 
+.randomButton:hover{
+  background-color: rgb(169, 179, 22);
+  cursor: pointer;
+}
+
 .loading{
   text-align: center;
   margin: auto;

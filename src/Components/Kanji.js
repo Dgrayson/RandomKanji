@@ -9,13 +9,14 @@ function Kanji() {
     let allKanji = []
     const [data, setData] = useState({ });
     const [isBusy, setBusy] = useState(true); 
+    const [mode, setMode] = useState("all");
     const baseUrl = "http://kanjiapi.dev/v1/kanji/"
 
     useEffect(async () => {
-        GetKanji("all"); 
-    }, []);
+        GetKanji(); 
+    }, [mode]);
 
-    async function GetKanji(mode){
+    async function GetKanji(){
 
         setBusy(true); 
 
@@ -38,7 +39,7 @@ function Kanji() {
         return (<div id="container"><div className="loading">Loading...</div></div>); 
     }
     else{
-        this.GetKanji = this.GetKanji.bind(this);
+        
         return (
             <div id="container">
                 <div className="KanjiData">
@@ -55,7 +56,7 @@ function Kanji() {
                 </div>
 
                 <Readings data={data}/>         
-                <Navigation GetKanji = {this.GetKanji} />
+                <Navigation SetMode = {setMode} />
             </div>
         );
     }
